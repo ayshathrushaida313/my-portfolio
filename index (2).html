@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayshath Rushaida — Software Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0d0d;
+    --surface: #161616;
+    --surface2: #1e1e1e;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0ede8;
+    --muted: #888580;
+    --accent: #7c6af7;
+    --accent2: #5dcaa5;
+    --accent-dim: rgba(124,106,247,0.12);
+    --accent2-dim: rgba(93,202,165,0.10);
+    --font-head: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 56px;
+    background: rgba(13,13,13,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-head);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 13px;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* LAYOUT */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  section {
+    padding: 5rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+  section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: var(--font-head);
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  /* HERO */
+  #hero {
+    padding: 7rem 0 5rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--accent2);
+    background: var(--accent2-dim);
+    border: 0.5px solid rgba(93,202,165,0.25);
+    border-radius: 100px;
+    padding: 4px 12px;
+    margin-bottom: 1.5rem;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent2); }
+
+  .hero-name {
+    font-family: var(--font-head);
+    font-size: clamp(38px, 7vw, 64px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.0;
+    margin-bottom: 1rem;
+  }
+  .hero-name span { color: var(--accent); }
+
+  .hero-tagline {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 540px;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:hover { background: #6b5be6; }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 0.5px solid var(--border2);
+  }
+  .btn-outline:hover { background: var(--surface2); }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .meta-item svg { opacity: 0.5; }
+
+  /* STATS */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+  .stat {
+    background: var(--surface);
+    padding: 1.25rem 1.5rem;
+  }
+  .stat-num {
+    font-family: var(--font-head);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.03em;
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .about-text { color: var(--muted); line-height: 1.8; }
+  .about-text p + p { margin-top: 1rem; }
+
+  .vm-cards { display: flex; flex-direction: column; gap: 12px; }
+  .vm-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+  }
+  .vm-card-label {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .vm-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  .skill-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    transition: border-color 0.2s;
+  }
+  .skill-card:hover { border-color: var(--border2); }
+  .skill-card-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--accent-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  .skill-card-icon.teal { background: var(--accent2-dim); }
+  .skill-card h3 {
+    font-family: var(--font-head);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--surface2);
+    border: 0.5px solid var(--border);
+    color: var(--muted);
+  }
+
+  /* PROJECTS */
+  .projects-list { display: flex; flex-direction: column; gap: 16px; }
+  .project-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .project-card:hover { border-color: var(--border2); }
+  .project-card.featured {
+    border-color: rgba(124,106,247,0.35);
+    background: linear-gradient(135deg, var(--surface) 0%, rgba(124,106,247,0.04) 100%);
+  }
+  .project-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .project-title {
+    font-family: var(--font-head);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .project-badge {
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-ai { background: var(--accent-dim); color: #a89cf7; border: 0.5px solid rgba(124,106,247,0.3); }
+  .badge-cv { background: var(--accent2-dim); color: #4dbf96; border: 0.5px solid rgba(93,202,165,0.3); }
+  .badge-intern { background: rgba(250,199,117,0.1); color: #c49a2a; border: 0.5px solid rgba(250,199,117,0.25); }
+  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 5px; }
+  .project-links { display: flex; gap: 10px; margin-top: 14px; }
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--muted);
+    border: 0.5px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 10px;
+    transition: all 0.2s;
+  }
+  .project-link:hover { color: var(--text); border-color: var(--border2); }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 0;
+    width: 0.5px;
+    background: var(--border);
+  }
+  .timeline-item { position: relative; padding-bottom: 2.5rem; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot {
+    position: absolute;
+    left: -1.5rem;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    transform: translateX(-3.5px);
+  }
+  .timeline-title {
+    font-family: var(--font-head);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .timeline-meta { font-size: 13px; color: var(--accent2); margin-bottom: 8px; }
+  .timeline-desc { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+  /* CERTIFICATIONS */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .cert-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+  }
+  .cert-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: #0071c5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    font-family: var(--font-head);
+  }
+  .cert-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .cert-org { font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 2rem;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    transition: border-color 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .contact-item:hover { border-color: var(--border2); }
+  .contact-ico {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+  .ico-mail { background: rgba(239,99,107,0.12); color: #ef636b; }
+  .ico-phone { background: var(--accent2-dim); color: var(--accent2); }
+  .ico-linkedin { background: rgba(0,119,181,0.12); color: #0077b5; }
+  .ico-github { background: var(--accent-dim); color: var(--accent); }
+  .contact-label { font-size: 11px; color: var(--muted); }
+  .contact-val { font-size: 13px; font-weight: 500; color: var(--text); word-break: break-all; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 0.5px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .container { padding: 0 1.25rem; }
+    section { padding: 3.5rem 0; }
+    #hero { padding: 4rem 0 3rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .hero-name { font-size: 38px; }
+    h2 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Ayshath Rushaida</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      Open to opportunities · UAE · Dubai · Remote · On-site
+    </div>
+    <h1 class="hero-name">Ayshath<br><span>Rushaida</span></h1>
+    <p class="hero-tagline">Software Developer · Python &amp; AI Enthusiast · Building real-world solutions with Computer Vision and Data Analytics.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h18v18H3z"/><path d="M9 9h6v6H9z"/></svg>
+        View projects
+      </a>
+      <a href="#contact" class="btn btn-outline">Get in touch</a>
+      <a href="https://github.com/ayshathrushaida313" target="_blank" class="btn btn-outline">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num">1<span>+</span></div><div class="stat-label">Internship</div></div>
+      <div class="stat"><div class="stat-num">2<span>+</span></div><div class="stat-label">AI projects</div></div>
+      <div class="stat"><div class="stat-num">2<span>×</span></div><div class="stat-label">Azure certified</div></div>
+      <div class="stat"><div class="stat-num">BCA</div><div class="stat-label">Yenepoya Univ.</div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <div>
+        <h2>Building with AI,<br>grounded in code</h2>
+        <div class="about-text">
+          <p>I'm a BCA graduate from Yenepoya University, specializing in Artificial Intelligence and Machine Learning. I have hands-on experience in Python programming, computer vision, and web technologies through academic projects and real industry work.</p>
+          <p>My standout project — a Driver Drowsiness Detection System — uses OpenCV, Dlib, and real-time facial analysis to improve road safety. It integrates a Telegram Bot for live notifications and supports multi-face monitoring.</p>
+          <p>I completed a Software Development Internship at Marketlube, Kozhikode, where I gained practical experience in coding, debugging, testing, and delivering software in a professional environment.</p>
+        </div>
+      </div>
+      <div class="vm-cards">
+        <div class="vm-card">
+          <div class="vm-card-label">Vision</div>
+          <p>To become a skilled Software Developer creating innovative, impactful technology solutions using AI, Data Analytics, and modern software engineering.</p>
+        </div>
+        <div class="vm-card">
+          <div class="vm-card-label">Mission</div>
+          <p>Continuously enhance my technical skills, gain real industry experience, and contribute to meaningful projects — delivering high-quality, user-focused software.</p>
+        </div>
+        <div class="vm-card">
+          <div class="vm-card-label">Currently seeking</div>
+          <p>Fresher roles in Software Development, Python Development, AI/ML, and Data Analytics. Open to: UAE, Dubai, remote, and on-site positions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">Skills</p>
+    <h2>Technical toolkit</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-icon">🐍</div>
+        <h3>Languages</h3>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Java</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon teal">🤖</div>
+        <h3>AI &amp; Computer Vision</h3>
+        <div class="skill-tags">
+          <span class="tag">OpenCV</span>
+          <span class="tag">Dlib</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Facial Analysis</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">☁️</div>
+        <h3>Cloud &amp; Data</h3>
+        <div class="skill-tags">
+          <span class="tag">Azure AI</span>
+          <span class="tag">Azure Data</span>
+          <span class="tag">Data Analytics</span>
+          <span class="tag">MySQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon teal">🌐</div>
+        <h3>Web</h3>
+        <div class="skill-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">REST APIs</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🛠</div>
+        <h3>Tools &amp; practices</h3>
+        <div class="skill-tags">
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Agile</span>
+          <span class="tag">Debugging</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon teal">🤝</div>
+        <h3>Soft skills</h3>
+        <div class="skill-tags">
+          <span class="tag">Problem solving</span>
+          <span class="tag">Communication</span>
+          <span class="tag">Teamwork</span>
+          <span class="tag">Time management</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">Projects</p>
+    <h2>What I've built</h2>
+    <div class="projects-list">
+
+      <div class="project-card featured">
+        <div class="project-header">
+          <span class="project-title">Driver Drowsiness Detection with Multi-Facial Analysis</span>
+          <span class="project-badge badge-cv">Computer Vision · 2026</span>
+        </div>
+        <p class="project-desc">AI-powered system that monitors driver alertness in real time using facial landmark detection, eye-blink tracking, and fatigue analysis. Supports simultaneous multi-face monitoring and triggers audio + voice alerts when drowsiness is detected. Integrated a Telegram Bot for remote real-time notifications — making it deployable for fleet safety monitoring.</p>
+        <div class="project-stack">
+          <span class="tag">Python</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">Dlib</span>
+          <span class="tag">Facial Landmarks</span>
+          <span class="tag">Telegram Bot API</span>
+          <span class="tag">Real-time Processing</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/ayshathrushaida313/drowsinessdetection" target="_blank" class="project-link">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-title">Wakey-Wakey Alert System</span>
+          <span class="project-badge badge-ai">AI · Python</span>
+        </div>
+        <p class="project-desc">A companion alertness and wake-up system leveraging AI-based detection techniques. Built as an extension of the drowsiness detection research, focusing on robust alert delivery and system responsiveness.</p>
+        <div class="project-stack">
+          <span class="tag">Python</span>
+          <span class="tag">OpenCV</span>
+          <span class="tag">Alert System</span>
+          <span class="tag">AI</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/ayshathrushaida313/wakey-wakey-system" target="_blank" class="project-link">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE + EDUCATION -->
+  <section id="experience">
+    <p class="section-label">Experience &amp; Education</p>
+    <h2>Background</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-title">Software Development Intern</p>
+        <p class="timeline-meta">Marketlube · Kozhikode, Kerala · 2026</p>
+        <p class="timeline-desc">Gained practical industry experience in coding, debugging, testing, and delivering software features. Contributed to project development and improved technical and problem-solving skills in a professional team environment.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <p class="timeline-title">Bachelor of Computer Applications (BCA)</p>
+        <p class="timeline-meta">Yenepoya University · Specialization: AI &amp; ML · 2023 – 2026</p>
+        <p class="timeline-desc">Studied programming, database management, web development, software engineering, and data analytics. Key projects include the Driver Drowsiness Detection System and Software Development Internship. Microsoft Azure AI-900 and DP-900 certified during this period.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background: var(--muted);"></div>
+        <p class="timeline-title">Higher Secondary Education</p>
+        <p class="timeline-meta">Saadiya Women's College · Kerala</p>
+        <p class="timeline-desc">Completed higher secondary studies with a focus on analytical and problem-solving skills, building the foundation for a career in Computer Applications.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <p class="section-label">Certifications</p>
+    <h2>Microsoft Azure certified</h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-icon">Az</div>
+        <div>
+          <p class="cert-name">Azure AI Fundamentals</p>
+          <p class="cert-org">Microsoft · AI-900</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">Az</div>
+        <div>
+          <p class="cert-name">Azure Data Fundamentals</p>
+          <p class="cert-org">Microsoft · DP-900</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Contact</p>
+    <h2>Let's work together</h2>
+    <p style="color: var(--muted); margin-bottom: 2rem; max-width: 500px;">I'm actively seeking roles in Software Development, Python, AI/ML, and Data Analytics. Open to internships, fresher roles, and freelance work.</p>
+    <div class="contact-grid">
+      <a href="mailto:ayshathrushaida313@gmail.com" class="contact-item">
+        <div class="contact-ico ico-mail">✉</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-val">ayshathrushaida313@gmail.com</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/ayshath-rushaida-378b49413" target="_blank" class="contact-item">
+        <div class="contact-ico ico-linkedin">in</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-val">ayshath-rushaida</div>
+        </div>
+      </a>
+      <a href="https://github.com/ayshathrushaida313" target="_blank" class="contact-item">
+        <div class="contact-ico ico-github">
+          <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-val">ayshathrushaida313</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Built by Ayshath Rushaida · Kerala, India · Open to UAE · Dubai · Remote · On-site
+</footer>
+
+</body>
+</html>
